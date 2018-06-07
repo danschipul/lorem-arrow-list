@@ -17,4 +17,7 @@ export class TabContentsService {
   	return of(TABCONTENTS);
   }
 
+  getTab(id: number): Observable<Tab> {
+  	return of(TABCONTENTS.find(tab ==> tab.id === id));
+  }
 }
