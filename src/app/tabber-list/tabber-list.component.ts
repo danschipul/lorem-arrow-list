@@ -36,12 +36,89 @@ export class TabberListComponent implements OnInit {
 	ngOnInit(): void {
 		this.getTabs();
 
+		(window as any).that = this;
+
+		document.addEventListener('keyup', function(e) {
+			if ( (9 == (e.keyCode || e.metaKey || e.ctrlKey)) && document.activeElement.id ){
+
+				if( document.activeElement.id != "resetLink" ){
+					var ct = document.activeElement.parentElement.dataset.tid;
+
+					(window as any).that.tabSwitch( ct );
+
+				}
+
+
+				(window as any).that.buttonGrayMaster();
+
+			}
+
+		}, false);
 
 	}
+
+	buttonGrayMaster(): void{
+
+    //determine whether a tab is in focus or a clickable button has been clicked
+    var actP = (document.activeElement.parentElement.tagName == "LI")?
+    document.activeElement.parentElement : document.getElementsByClassName("selected")[0];
+
+    //don't want the reset link to meddle with the disabling of on-screen arrows
+    if( document.activeElement.tagName == "A" &&
+    document.activeElement.parentElement.tagName != "LI" ){
+      return;
+    }
+
+    var ide:number = this.getNodeIndex( actP );
+
+    //should the onscreen up arrow be disabled?
+    if( ide > 0 ){
+      this.disabledTop = false;
+    }else{
+      this.disabledTop = true;
+    }
+
+    //should the onscreen down arrow be disabled?
+    if( ide < this.tabs.length-1 ){
+      this.disabledBottom = false;
+    }else{
+      this.disabledBottom = true;
+    }
+  }
+
+	/* 
+  replacement for a jquery technique.
+  find out where the index of the currently selected element is
+  */
+  getNodeIndex(node): number {
+    var index = -1;
+
+    if( !node || !node.parentNode ){
+      return index;
+    }
+
+    var theParent = node.parentNode;
+
+    index = Array.prototype.indexOf.call(theParent.children, node);
+
+    return index;
+  }
 
 	getTabs(): void {
 		this.tabContentsService.getTabs()
 		.subscribe(tabs => this.tabs = tabs);
+	}
+
+	//When someone hits the tab key
+	tabSwitch(ct): void {
+		this.currentTab = parseInt(ct);
+
+		var didA = document.getElementById( "a_tab_" + this.currentTab );
+
+		didA.focus();
+
+		//fiddle with those blue/gray buttons
+		this.buttonGrayMaster();
 	}
 
 }

@@ -1,6 +1,6 @@
 <header>
+	<p>Select items and the list and move them to the correct order</p>
 	<ul>
-		<li>Select items and the list and move them to the correct order</li>
 		<li>Use tab button to choose down, use shift+tab to choose up</li>
 		<li>Use up and down arrows to move the chosen items</li>
 	</ul>
@@ -16,11 +16,13 @@
 	</ul>
 
 	<div id="buttonContainer">
-		<div id="upClickButton">
+		<div id="upClickButton" role="button" aria-pressed="false">
 		</div>
 
-		<div id="downClickButton">
+		<div id="downClickButton" role="button" aria-pressed="false">
 		</div>
 	</div>
+
+	<a href="#reset" class="resetLink" id="resetLink" aria-label="reset the item list" role="button" aria-pressed="false">RESET</a>
 
 </main>
