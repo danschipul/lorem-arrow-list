@@ -6,7 +6,7 @@
 	</ul>
 </header>
 <main>
-	<ul>
+	<ul id="theTabs" class="tabs">
 		<li *ngFor="let tab of tabs" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}" 
 		[ngClass]="{'li_tab': true, 'selected':currentTab === tab.id}">
 			<a href="#{{tab.id}}" id="a_tab_{{tab.id}}" class="a_tab">
@@ -22,5 +22,5 @@
 		<div id="downClickButton">
 		</div>
 	</div>
-	
+
 </main>
