@@ -1,0 +1,29 @@
+* {
+	font-family: Trebuchet, Arial, sans-serif;
+}
+
+ul#theTabs{
+	float:left;
+}
+
+li.li_tab{
+	list-style: none;
+	clear: both;
+	
+	a.a_tab{
+		display:block;
+		background-color:white;
+		border:#ccc 2px solid;
+		border-radius: 5px;
+
+		width:400px;
+		padding:25px;
+		margin-bottom:10px;
+
+		color: #666;
+
+	  text-decoration: none;
+	  float:left;
+	}
+
+}

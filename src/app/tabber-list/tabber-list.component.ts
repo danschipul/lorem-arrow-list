@@ -6,7 +6,7 @@ import { TabContentsService } from '../tab-contents.service';
 @Component({
   selector: 'app-tabber-list',
   templateUrl: './tabber-list.component.html',
-  styleUrls: ['./tabber-list.component.css']
+  styleUrls: ['./tabber-list.component.scss']
 })
 
 export class TabberListComponent implements OnInit {
