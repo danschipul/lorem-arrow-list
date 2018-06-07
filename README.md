@@ -1,5 +1,7 @@
 # LoremArrowList
 
+You can find a working example here: http://3ringprototype.com/lorem-arrow-list/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
 
 ## Development server
