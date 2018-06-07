@@ -45,15 +45,24 @@ export class TabberListComponent implements OnInit {
 					var ct = document.activeElement.parentElement.dataset.tid;
 
 					(window as any).that.tabSwitch( ct );
-
 				}
-
-
+				
 				(window as any).that.buttonGrayMaster();
-
 			}
 
 		}, false);
+
+		 //this represents the master ul element, parent to all tabs
+    this.tabsDOM = document.getElementById("theTabs");
+
+    //deals with bug for page refreshes when before something was tab focused
+    if ("activeElement" in document){
+      var ae:HTMLElement = <HTMLElement> document.activeElement;
+
+      ae.blur();
+    }
+
+
 
 	}
 
@@ -120,5 +129,49 @@ export class TabberListComponent implements OnInit {
 		//fiddle with those blue/gray buttons
 		this.buttonGrayMaster();
 	}
+
+	//effectively only for the keyboard arrows
+	onArrowKey(event, obj): void {
+		if ( event.code == "ArrowUp" || event.key == "ArrowUp" ) {
+			this.shiftTabLocation(true);
+		}
+
+		if ( (event.code == "ArrowDown" || event.key == "ArrowDown") && document.getElementById("li_tab_" + obj.id).nextSibling ) {
+			this.shiftTabLocation(false);
+		}
+
+		//refocus the tabbed element
+		document.getElementById("a_tab_" + obj.id).focus();
+
+		//fiddle with those blue/gray buttons
+		this.buttonGrayMaster();
+	}
+
+	//when either a keyboard up/down arrow or onscreen arrow is hit
+  shiftTabLocation(up:boolean): void{
+    var didL = document.getElementById("li_tab_" + this.currentTab);
+    var didA = document.getElementById("a_tab_" + this.currentTab);
+
+    if( up ){
+      //indicate whether this item is now at the top of the stack.  if so, stop everything else.
+      if( this.getNodeIndex(didL) < 1 ){
+        return;
+      }
+
+      // Insert this <li> before it's earlier sibling
+      this.tabsDOM.insertBefore(didL, didL.previousSibling );
+    }else{
+
+      if( didL.nextSibling ){
+        // Insert <li> after its next sibling
+        this.tabsDOM.insertBefore(didL, didL.nextSibling.nextSibling );
+      }
+    }
+
+    this.buttonGrayMaster();
+    
+    //placed the moved element into focus
+    didA.focus();
+  }
 
 }

@@ -7,7 +7,7 @@
 </header>
 <main>
 	<ul id="theTabs" class="tabs">
-		<li *ngFor="let tab of tabs" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}" 
+		<li *ngFor="let tab of tabs" (keydown)="onArrowKey($event, tab)" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}" 
 		[ngClass]="{'li_tab': true, 'selected':currentTab === tab.id}">
 			<a href="#{{tab.id}}" id="a_tab_{{tab.id}}" class="a_tab">
 				<span class="badge">{{tab.id}}</span> {{tab.name}}
