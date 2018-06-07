@@ -2,6 +2,30 @@
 	font-family: Trebuchet, Arial, sans-serif;
 }
 
+#upClickButton:after, #downClickButton:after{
+	width:50px;
+	height:100px;
+	display:inline-block;
+	font-size:44pt;
+	color: #09F;
+	float:left;
+	text-decoration:none;
+	cursor: pointer;
+}
+
+#upClickButton:after{
+	content:"\21A5";
+}
+
+#downClickButton:after{
+	content:"\21A7";
+}
+
+#upClickButton.disabled:after, #downClickButton.disabled:after{
+	color: #999;
+	cursor: not-allowed;
+}
+
 ul#theTabs{
 	float:left;
 }
