@@ -6,5 +6,9 @@
 	</ul>
 </header>
 <main>
-
+	<ul>
+		<li *ngFor="let tab of tabs" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}">
+			<span>{{tb.id}}</span> {{tab.name}}
+		</li>
+	</ul>
 </main>

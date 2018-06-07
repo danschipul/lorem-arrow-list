@@ -18,6 +18,6 @@ export class TabContentsService {
   }
 
   getTab(id: number): Observable<Tab> {
-  	return of(TABCONTENTS.find(tab ==> tab.id === id));
+  	return of(TABCONTENTS.find(tab => tab.id === id));
   }
 }
