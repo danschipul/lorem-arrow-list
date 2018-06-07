@@ -7,7 +7,8 @@
 </header>
 <main>
 	<ul>
-		<li class="li_tab" *ngFor="let tab of tabs" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}">
+		<li *ngFor="let tab of tabs" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}" 
+		[ngClass]="{'li_tab': true, 'selected':currentTab === tab.id}">
 			<a class="a_tab"><span>{{tab.id}}</span> {{tab.name}}</a>
 		</li>
 	</ul>
