@@ -58,6 +58,12 @@ li.li_tab{
 	  float:left;
 	}
 
+	&.selected a.a_tab{
+		color:white;
+		background-color: #09F;
+		border-color:#999;
+	}
+
 }
 
 .resetLink{
