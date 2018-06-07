@@ -38,6 +38,7 @@ export class TabberListComponent implements OnInit {
 
 		(window as any).that = this;
 
+		//on tab
 		document.addEventListener('keyup', function(e) {
 			if ( (9 == (e.keyCode || e.metaKey || e.ctrlKey)) && document.activeElement.id ){
 
@@ -52,7 +53,7 @@ export class TabberListComponent implements OnInit {
 
 		}, false);
 
-		 //this represents the master ul element, parent to all tabs
+		//this represents the master ul element, parent to all tabs
     this.tabsDOM = document.getElementById("theTabs");
 
     //deals with bug for page refreshes when before something was tab focused
@@ -174,6 +175,11 @@ export class TabberListComponent implements OnInit {
     didA.focus();
   }
 
+  //on mouse click select the item
+  clickTab(t:number): void{
+  	this.tabSwitch(t);
+  }
+
   //fires when the reset link is hit
   tabsReset(): void{
     //defined here rather than in ngOnInit, because we want its current state
@@ -196,6 +202,11 @@ export class TabberListComponent implements OnInit {
       }
     }
 
+    //reset the current tab here, because it is supposed to be like initial state
+    this.currentTab = -1;
+
+    this.disabledTop = true;
+    this.disabledBottom = true;
   }
 
 }
