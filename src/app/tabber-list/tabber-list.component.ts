@@ -34,6 +34,14 @@ export class TabberListComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.getTabs();
+
+
+	}
+
+	getTabs(): void {
+		this.tabContentsService.getTabs()
+		.subscribe(tabs => this.tabs = tabs);
 	}
 
 }
