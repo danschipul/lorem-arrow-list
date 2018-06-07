@@ -46,7 +46,7 @@ export class TabberListComponent implements OnInit {
 
 					(window as any).that.tabSwitch( ct );
 				}
-				
+
 				(window as any).that.buttonGrayMaster();
 			}
 
@@ -62,7 +62,7 @@ export class TabberListComponent implements OnInit {
       ae.blur();
     }
 
-
+    this.tabsReset();
 
 	}
 
@@ -172,6 +172,30 @@ export class TabberListComponent implements OnInit {
     
     //placed the moved element into focus
     didA.focus();
+  }
+
+  //fires when the reset link is hit
+  tabsReset(): void{
+    //defined here rather than in ngOnInit, because we want its current state
+    var elems = document.querySelectorAll(".li_tab");
+
+    for( var i=0; i<this.tabs.length; i++ ){
+      var theId = "li_tab_" + i;
+
+      var el = document.getElementById( theId );
+
+      if(el){
+        //remove the focus from this tab
+        el.blur();
+
+        //push this tab back to its origin point
+        this.tabsDOM.insertBefore(el, this.tabsDOM.childNodes[ theId ]);
+
+        //remove the focus appearance
+        el.classList.remove("selected");
+      }
+    }
+
   }
 
 }

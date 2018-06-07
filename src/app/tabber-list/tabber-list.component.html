@@ -16,13 +16,17 @@
 	</ul>
 
 	<div id="buttonContainer">
-		<div id="upClickButton" role="button" aria-pressed="false">
-		</div>
+		<div id="upClickButton" (click)="shiftTabLocation(true)"
+		[ngClass]="{'disabled': disabledTop === true}"
+		aria-label="Move selected item up" role="button" aria-pressed="false"></div>
 
-		<div id="downClickButton" role="button" aria-pressed="false">
+		<div id="downClickButton" (click)="shiftTabLocation(false)"
+		[ngClass]="{'disabled': disabledBottom === true}"
+		aria-label="Move selected item down" role="button" aria-pressed="false">
 		</div>
 	</div>
 
-	<a href="#reset" class="resetLink" id="resetLink" aria-label="reset the item list" role="button" aria-pressed="false">RESET</a>
+	<a href="#reset" (click)="tabsReset()" class="resetLink" id="resetLink"
+	aria-label="reset the item list" role="button" aria-pressed="false">RESET</a>
 
 </main>
