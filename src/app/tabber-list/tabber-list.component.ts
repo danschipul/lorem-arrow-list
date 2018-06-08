@@ -65,7 +65,7 @@ export class TabberListComponent implements OnInit {
       ae.blur();
     }
 
-    this.tabsReset();
+    this.tabsReset(true);
 
 	}
 
@@ -184,7 +184,7 @@ export class TabberListComponent implements OnInit {
   }
 
   //fires when the reset link is hit
-  tabsReset(): void{
+  tabsReset(isStart = false): void{
     //defined here rather than in ngOnInit, because we want its current state
     var elems = document.querySelectorAll(".li_tab");
 
@@ -211,7 +211,9 @@ export class TabberListComponent implements OnInit {
     this.disabledTop = true;
     this.disabledBottom = true;
 
-    this.status = "The tabs have been reset to the default order";
+    if (!isStart){
+    	this.status = "The tabs have been reset to the default order";
+    }
   }
 
   updateStatus(): void{
