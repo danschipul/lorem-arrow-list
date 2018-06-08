@@ -1,32 +1,42 @@
 <header>
-	<p>Select items and the list and move them to the correct order</p>
-	<ul>
-		<li>Use tab button to choose down, use shift+tab to choose up</li>
-		<li>Use up and down arrows to move the chosen items</li>
-	</ul>
+	<h1 id="select-list-items">Reorder the list to the correct order</h1>
 </header>
 <main>
-	<ul id="theTabs" class="tabs">
-		<li *ngFor="let tab of tabs" (keydown)="onArrowKey($event, tab)" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}" (click)="clickTab(tab.id)"
-		[ngClass]="{'li_tab': true, 'selected':currentTab === tab.id}">
-			<a href="#{{tab.id}}" id="a_tab_{{tab.id}}" class="a_tab">
-				<span class="badge">{{tab.id}}</span> {{tab.name}}
-			</a>
-		</li>
-	</ul>
-
-	<div id="buttonContainer">
-		<div id="upClickButton" (click)="shiftTabLocation(true)"
-		[ngClass]="{'disabled': disabledTop === true}"
-		aria-label="Move selected item up" role="button" aria-pressed="false"></div>
-
-		<div id="downClickButton" (click)="shiftTabLocation(false)"
-		[ngClass]="{'disabled': disabledBottom === true}"
-		aria-label="Move selected item down" role="button" aria-pressed="false">
+	<div role="application" aria-labelledby="select-list-items" aria-describedby="instructions">
+		<div id="instructions" tabindex="0">
+			<p>Select items and the list and move them to the correct order</p>
+			<ul>
+				<li>Use tab button to select an item down in the list, use shift+tab to choose up in the list</li>
+				<li>Use up and down arrows to move the selected items</li>
+			</ul>
+			<p role="alert" aria-atomic="true" id="statusUpdate">
+				{{status}}
+			</p>
 		</div>
-	</div>
+		<ul id="theTabs" class="tabs">
+			<li *ngFor="let tab of tabs" (keydown)="onArrowKey($event, tab)" [attr.data-tid]="tab.id" id="li_tab_{{tab.id}}" (click)="clickTab(tab.id)"
+			[ngClass]="{'li_tab': true, 'selected':currentTab === tab.id}">
+				<a href="#{{tab.id}}" id="a_tab_{{tab.id}}" class="a_tab">
+					<span class="badge sr-only">Item {{tab.id+1}}:</span> {{tab.name}} 
+				</a>
+			</li>
+		</ul>
 
-	<a href="#reset" (click)="tabsReset()" class="resetLink" id="resetLink"
-	aria-label="reset the item list" role="button" aria-pressed="false">RESET</a>
+
+
+		<div id="buttonContainer">
+			<div id="upClickButton" (click)="shiftTabLocation(true)"
+			[ngClass]="{'disabled': disabledTop === true}"
+			aria-label="Move selected item up" role="button" aria-pressed="false"></div>
+
+			<div id="downClickButton" (click)="shiftTabLocation(false)"
+			[ngClass]="{'disabled': disabledBottom === true}"
+			aria-label="Move selected item down" role="button" aria-pressed="false">
+			</div>
+		</div>
+
+		<a href="#reset" (click)="tabsReset()" class="resetLink" id="resetLink"
+		aria-label="reset the item list" role="button" aria-pressed="false">RESET</a>
+	</div>
 
 </main>

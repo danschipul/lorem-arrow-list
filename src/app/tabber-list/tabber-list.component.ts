@@ -21,6 +21,8 @@ export class TabberListComponent implements OnInit {
 
 	disabledBottom: boolean;
 
+	status: string;
+
 	//runs as soon as a class instance is on the page
 	constructor(private tabContentsService: TabContentsService) {
 		this.currentTab = -1;
@@ -170,6 +172,7 @@ export class TabberListComponent implements OnInit {
     }
 
     this.buttonGrayMaster();
+    this.updateStatus();
     
     //placed the moved element into focus
     didA.focus();
@@ -207,6 +210,17 @@ export class TabberListComponent implements OnInit {
 
     this.disabledTop = true;
     this.disabledBottom = true;
+  }
+
+  updateStatus(): void{
+
+  	var node = document.getElementById("li_tab_" + this.currentTab);
+
+  	var orderNumber = this.getNodeIndex(node) + 1;
+
+  	var statusUpdateText = "Item " + (this.currentTab+1) + " is now number " + orderNumber + " in the list";
+
+  	this.status = statusUpdateText;
   }
 
 }
