@@ -210,6 +210,8 @@ export class TabberListComponent implements OnInit {
 
     this.disabledTop = true;
     this.disabledBottom = true;
+
+    this.status = "The tabs have been reset to the default order";
   }
 
   updateStatus(): void{
